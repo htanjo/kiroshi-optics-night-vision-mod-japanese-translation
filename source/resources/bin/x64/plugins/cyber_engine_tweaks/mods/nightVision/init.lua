@@ -100,7 +100,7 @@ function night:new()
         self.settings = config.loadFile("config/config.json")
 
         if not Codeware then
-            print("[NightVision] Error: Missing Codeware")
+            print("[NightVision] エラー: Codeware がありません")
         end
 
         self.settingsUI = require("modules/settingsUI")

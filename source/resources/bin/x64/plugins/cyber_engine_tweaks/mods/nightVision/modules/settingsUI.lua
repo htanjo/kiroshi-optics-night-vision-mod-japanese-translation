@@ -7,14 +7,14 @@ local settings = {}
 function settings.addKeybinds(mod)
     -- Keyboard
     local info = mod.inputManager.createBindingInfo()
-    info.keybindLabel = "Key"
-    info.keybindDescription = "Bind a key that is part of the hotkey"
-    info.isHoldLabel = "Is Hold"
+    info.keybindLabel = "キー"
+    info.keybindDescription = "ホットキーの一部として使うキーを登録する"
+    info.isHoldLabel = "長押し設定"
     info.supportsHold = false
     info.id = "mkbBinding"
     info.maxKeys = 2
-    info.maxKeysLabel = "Hotkey Keys Amount"
-    info.maxKeysDescription = "Changes how many keys this hotkey has, all of them have to pressed for the hotkey to be activated"
+    info.maxKeysLabel = "ホットキーの数"
+    info.maxKeysDescription = "このホットキーに必要なキーの数を変更する。起動するには全てのキーを押す必要がある"
     info.nativeSettingsPath = "/nightVision/hotkeyMKB"
     info.defaultOptions = mod.defaultSettings.keyboard
     info.savedOptions = mod.settings.keyboard
@@ -31,11 +31,11 @@ function settings.addKeybinds(mod)
     -- Gamepad
     info = utils.deepcopy(info)
     info.supportsHold = true
-    info.isHoldDescription = "Controls whether the bound key below needs to be held down for some time to be activated"
+    info.isHoldDescription = "起動の際、登録したキーを一定時間押し続ける必要があるかどうか設定する"
     info.id = "padBinding"
     info.maxKeys = 3
-    info.maxKeysLabel = "Hotkey Keys Amount"
-    info.maxKeysDescription = "Changes how many keys this hotkey has, all of them have to pressed for the hotkey to be activated"
+    info.maxKeysLabel = "ホットキーの数"
+    info.maxKeysDescription = "このホットキーに必要なキーの数を変更する。起動するには全てのキーを押す必要がある"
     info.nativeSettingsPath = "/nightVision/hotkeyPad"
     info.defaultOptions = mod.defaultSettings.pad
     info.savedOptions = mod.settings.pad
@@ -51,7 +51,7 @@ function settings.setupNative(mod)
     local nativeSettings = GetMod("nativeSettings")
 
     if not nativeSettings then
-        print("[NightVision] Info: NativeSettings lib not found!")
+        print("[NightVision] 情報: NativeSettings ライブラリが見つかりません!")
         return
     end
 
@@ -60,13 +60,13 @@ function settings.setupNative(mod)
     end)))
 
     if cetVer < 1.18 then
-        print("[NightVision] Error: CET version below recommended!")
+        print("[NightVision] エラー: CET が推奨バージョン未満です!")
         return
     end
 
-    nativeSettings.addTab("/nightVision", "Night Vision CW")
-    nativeSettings.addSubcategory("/nightVision/hotkeyMKB", "Keyboard Hotkey")
-    nativeSettings.addSubcategory("/nightVision/hotkeyPad", "Controller Hotkey")
+    nativeSettings.addTab("/nightVision", "ナイトビジョン サイバーウェア")
+    nativeSettings.addSubcategory("/nightVision/hotkeyMKB", "キーボード ホットキー")
+    nativeSettings.addSubcategory("/nightVision/hotkeyPad", "コントローラー ホットキー")
 
     settings.addKeybinds(mod)
 end
